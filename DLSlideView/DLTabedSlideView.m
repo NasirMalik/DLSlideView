@@ -12,6 +12,7 @@
 #import "DLLRUCache.h"
 
 #define kDefaultTabbarHeight 34
+#define kDefaultSidePadding 0
 #define kDefaultTabbarBottomSpacing 0
 #define kDefaultCacheCount 4
 
@@ -28,7 +29,9 @@
 @end
 
 @interface DLTabedSlideView()<DLSlideViewDelegate, DLSlideViewDataSource>
-
+{
+    NSInteger tabBarYPadding;
+}
 @end
 
 
@@ -41,6 +44,10 @@
 - (void)commonInit{
     self.tabbarHeight = kDefaultTabbarHeight;
     self.tabbarBottomSpacing = kDefaultTabbarBottomSpacing;
+    self.tabbarPadding = kDefaultSidePadding;
+    self.isStatusBarVisible=YES;
+    self.isNavigationBarVisible=YES;
+    tabBarYPadding=0;
     
     tabbar_ = [[DLFixedTabbarView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.tabbarHeight)];
     tabbar_.delegate = self;
@@ -74,9 +81,17 @@
 }
 
 - (void)layoutBarAndSlide{
+    if (self.isNavigationBarVisible) {
+        tabBarYPadding+=44;
+    }
+    
+    if (self.isStatusBarVisible) {
+        tabBarYPadding+=20;
+    }
+    
     UIView *barView = (UIView *)tabbar_;
-    barView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), self.tabbarHeight);
-    slideView_.frame = CGRectMake(0, self.tabbarHeight+self.tabbarBottomSpacing, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)-self.tabbarHeight-self.tabbarBottomSpacing);
+    barView.frame = CGRectMake(self.tabbarPadding, CGRectGetHeight(self.bounds)-self.tabbarHeight-self.tabbarBottomSpacing-tabBarYPadding, CGRectGetWidth(self.bounds)-self.tabbarPadding*2, self.tabbarHeight);
+    slideView_.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)-self.tabbarHeight-self.tabbarBottomSpacing-tabBarYPadding);
 
 }
 //- (void)setViewControllers:(NSArray *)viewControllers{

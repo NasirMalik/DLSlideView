@@ -38,8 +38,12 @@
 @property(nonatomic, strong) UIImage *tabbarBackgroundImage;
 @property(nonatomic, strong) UIColor *tabbarTrackColor;
 @property(nonatomic, strong) NSArray *tabbarItems;
+@property(nonatomic, assign) float tabbarPadding;
 @property(nonatomic, assign) float tabbarHeight;
 @property(nonatomic, assign) float tabbarBottomSpacing;
+@property(nonatomic, assign) BOOL isStatusBarVisible;
+@property(nonatomic, assign) BOOL isNavigationBarVisible;
+
 
 // cache properties
 @property(nonatomic, assign) NSInteger cacheCount;

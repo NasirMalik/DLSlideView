@@ -28,7 +28,11 @@
     self.tabedSlideView.tabItemSelectedColor = [UIColor colorWithRed:0.833 green:0.052 blue:0.130 alpha:1.000];
     self.tabedSlideView.tabbarTrackColor = [UIColor colorWithRed:0.833 green:0.052 blue:0.130 alpha:1.000];
     self.tabedSlideView.tabbarBackgroundImage = [UIImage imageNamed:@"tabbarBk"];
-    self.tabedSlideView.tabbarBottomSpacing = 3.0;
+    self.tabedSlideView.tabbarBottomSpacing = 0.0;
+    self.tabedSlideView.tabbarPadding = 30.0;
+    self.tabedSlideView.isStatusBarVisible=YES;
+    self.tabedSlideView.isNavigationBarVisible=YES;
+
     
     DLTabedbarItem *item1 = [DLTabedbarItem itemWithTitle:@"最新" image:[UIImage imageNamed:@"goodsNew"] selectedImage:[UIImage imageNamed:@"goodsNew_d"]];
     DLTabedbarItem *item2 = [DLTabedbarItem itemWithTitle:@"最热" image:[UIImage imageNamed:@"goodsHot"] selectedImage:[UIImage imageNamed:@"goodsHot_d"]];
